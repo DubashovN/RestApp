@@ -1,22 +1,26 @@
 package ru.dubashov.restapp.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "first", schema = "peoples")
 public class People {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "surname")
     private String surname;
+    @Column(name = "patronymic")
     private String patronymic;
+    @Column(name = "birthdate")
     private LocalDate birthDate;
+    @Column(name = "phonenumber")
     private int phoneNumber;
+    @Column(name = "email")
     private String eMail;
 
     public People() {
