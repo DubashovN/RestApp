@@ -1,16 +1,17 @@
 package ru.dubashov.restapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import ru.dubashov.restapp.entity.People;
 import ru.dubashov.restapp.service.PeopleService;
 
 import java.util.List;
 
 @RequestMapping("/people")
-@Controller
+@RestController
 public class PeopleController {
     private final PeopleService peopleService;
 
@@ -20,8 +21,8 @@ public class PeopleController {
     }
 
     @GetMapping("/all")
-    public List<People> getAll(){
-        return peopleService.findAll();
+    public ResponseEntity<List<People>> getAll(){
+        return ResponseEntity.ok().body(peopleService.findAll());
     }
 
     @GetMapping("/add")
