@@ -9,8 +9,13 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Service
-public class PeopleServiceImpl implements PeopleService{
-    private PeopleRepository peopleRepository;
+public class PeopleServiceImpl implements PeopleService {
+    private final PeopleRepository peopleRepository;
+
+    @Autowired
+    public PeopleServiceImpl(PeopleRepository peopleRepository) {
+        this.peopleRepository = peopleRepository;
+    }
 
     @Autowired
     public PeopleRepository getPeopleRepository() {
@@ -28,10 +33,10 @@ public class PeopleServiceImpl implements PeopleService{
     }
 
     @Override
-    public void updatePeople(Integer id, String name, String surname, String patronymic, LocalDate birthDate, int phoneNumber, String eMail) {
+    public void updatePeople(Integer id, String surname, String name, String patronymic, LocalDate birthDate, int phoneNumber, String eMail) {
         People updatePeople = peopleRepository.getById(id);
-        updatePeople.setName(name);
         updatePeople.setSurname(surname);
+        updatePeople.setName(name);
         updatePeople.setPatronymic(patronymic);
         updatePeople.setBirthDate(birthDate);
         updatePeople.setPhoneNumber(phoneNumber);

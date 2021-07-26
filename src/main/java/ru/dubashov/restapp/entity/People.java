@@ -10,10 +10,10 @@ public class People {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @Column(name = "name")
-    private String name;
     @Column(name = "surname")
     private String surname;
+    @Column(name = "name")
+    private String name;
     @Column(name = "patronymic")
     private String patronymic;
     @Column(name = "birthdate")
@@ -27,20 +27,20 @@ public class People {
 
     }
 
-    public People(int id, String name, String surname, LocalDate birthDate, int phoneNumber, String eMail) {
+    public People(int id, String surname, String name, String patronymic, LocalDate birthDate, int phoneNumber, String eMail) {
         this.id = id;
-        this.name = name;
         this.surname = surname;
+        this.name = name;
+        this.patronymic = patronymic;
         this.birthDate = birthDate;
         this.phoneNumber = phoneNumber;
         this.eMail = eMail;
     }
 
-    public People(int id, String name, String surname, String patronymic, LocalDate birthDate, int phoneNumber, String eMail) {
+    public People(int id, String surname, String name, LocalDate birthDate, int phoneNumber, String eMail) {
         this.id = id;
-        this.name = name;
         this.surname = surname;
-        this.patronymic = patronymic;
+        this.name = name;
         this.birthDate = birthDate;
         this.phoneNumber = phoneNumber;
         this.eMail = eMail;
