@@ -6,6 +6,7 @@ import ru.dubashov.restapp.entity.People;
 import ru.dubashov.restapp.model.PeopleRepository;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -23,28 +24,29 @@ public class PeopleServiceImpl implements PeopleService {
     }
 
     @Override
-    public People getById(int id) {
-        return peopleRepository.getById(id);
+    public People getById(Integer id) {
+        return peopleRepository.findById(id).get();
     }
 
     @Override
-    public void savePeople(People people) {
-        peopleRepository.save(people);
+    public People create(People people) {
+
+        return peopleRepository.save(people);
     }
 
     @Override
-    public void updatePeople(Integer id, String surname, String name, String patronymic, LocalDate birthDate, int phoneNumber, String eMail) {
+    public void updatePeople(Integer id, String surname, String name, String patronymic, int phoneNumber, String eMail) {
         People updatePeople = peopleRepository.getById(id);
         updatePeople.setSurname(surname);
         updatePeople.setName(name);
         updatePeople.setPatronymic(patronymic);
-        updatePeople.setBirthDate(birthDate);
+//        updatePeople.setBirthDate(birthDate);
         updatePeople.setPhoneNumber(phoneNumber);
         updatePeople.seteMail(eMail);
     }
 
     @Override
-    public void deletePeople(int id) {
+    public void deletePeople(Integer id) {
         peopleRepository.deleteById(id);
     }
 

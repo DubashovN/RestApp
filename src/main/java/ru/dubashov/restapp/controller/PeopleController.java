@@ -1,10 +1,9 @@
 package ru.dubashov.restapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.dubashov.restapp.entity.People;
 import ru.dubashov.restapp.service.PeopleService;
 
@@ -21,12 +20,35 @@ public class PeopleController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<People>> getAll(){
+    public ResponseEntity<List<People>> getAll() {
         return ResponseEntity.ok().body(peopleService.findAll());
     }
 
-    @GetMapping("/add")
-    public void add(){
+    @GetMapping("/getId/{id}")
+    public ResponseEntity<People> getByID(@PathVariable(name = "id") Integer id) {
 
+        People people = this.peopleService.getById(id);
+        if (people != null){
+            return new ResponseEntity<>(people, HttpStatus.OK);
+        } else
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<People> add(@RequestBody People people) {
+        return ResponseEntity.ok().body(peopleService.create(people));
+    }
+
+    @PostMapping("/delete")
+    public ResponseEntity<People> delete(@RequestBody Integer id) {
+        People people1 = peopleService.getById(id);
+
+        if (people1 == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        this.peopleService.deletePeople(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
