@@ -1,24 +1,26 @@
 package ru.dubashov.restapp.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "first", schema = "peoples")
-public class People {
-
+@Table(name = "test", schema = "public")
+public class People implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @Column(name = "id")
+    @SequenceGenerator(name = "id_seq", sequenceName = "id_seq", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_seq")
+    private Integer id;
     @Column(name = "surname")
     private String surname;
     @Column(name = "name")
     private String name;
     @Column(name = "patronymic")
     private String patronymic;
-    @Column(name = "birthdate")
-    private LocalDate birthDate;
-    @Column(name = "phonenumber")
+//    @Column(name = "birthdate")
+//    private LocalDate birthDate;
+    @Column(name = "phone_number")
     private int phoneNumber;
     @Column(name = "email")
     private String eMail;
@@ -27,32 +29,30 @@ public class People {
 
     }
 
-    public People(int id, String surname, String name, String patronymic, LocalDate birthDate, int phoneNumber, String eMail) {
-        this.id = id;
+    public People(String surname, String name, String patronymic, int phoneNumber, String eMail) {
         this.surname = surname;
         this.name = name;
         this.patronymic = patronymic;
-        this.birthDate = birthDate;
         this.phoneNumber = phoneNumber;
         this.eMail = eMail;
     }
 
-    public People(int id, String surname, String name, LocalDate birthDate, int phoneNumber, String eMail) {
-        this.id = id;
+    public People(String surname, String name,  int phoneNumber, String eMail) {
+
         this.surname = surname;
         this.name = name;
-        this.birthDate = birthDate;
+//        this.birthDate = birthDate;
         this.phoneNumber = phoneNumber;
         this.eMail = eMail;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+//    public int getId() {
+//        return id;
+//    }
+//
+//    public void setId(int id) {
+//        this.id = id;
+//    }
 
     public String getName() {
         return name;
@@ -78,13 +78,13 @@ public class People {
         this.patronymic = patronymic;
     }
 
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
+//    public LocalDate getBirthDate() {
+//        return birthDate;
+//    }
+//
+//    public void setBirthDate(LocalDate birthDate) {
+//        this.birthDate = birthDate;
+//    }
 
     public int getPhoneNumber() {
         return phoneNumber;
@@ -100,5 +100,13 @@ public class People {
 
     public void seteMail(String eMail) {
         this.eMail = eMail;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

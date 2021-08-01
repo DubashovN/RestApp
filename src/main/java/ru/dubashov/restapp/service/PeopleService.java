@@ -6,13 +6,13 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface PeopleService {
-    People getById(int id);
+    People getById(Integer id);
 
-    void savePeople(People people);
+    People create(People people);
 
-    void updatePeople(Integer id, String surname, String patronymic, String name, LocalDate birthDate, int phoneNumber, String eMail);
+    void updatePeople(Integer id, String surname, String patronymic, String name,  int phoneNumber, String eMail);
 
-    void deletePeople(int id);
+    void deletePeople(Integer id);
 
     List<People> findAll();
 }
