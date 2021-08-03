@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import ru.dubashov.restapp.entity.People;
 import ru.dubashov.restapp.model.PeopleRepository;
 
+import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -28,15 +30,12 @@ public class PeopleServiceImpl implements PeopleService {
 
     @Override
     public People create(People people) {
-        if (people.getSurname() == null ||
-                people.getName() == null ||
-                people.getPhoneNumber() == null) {
-            throw new IllegalArgumentException();
-        } else peopleRepository.saveAndFlush(people);
+
+        return peopleRepository.save(people);
     }
 
     @Override
-    public void updatePeople(Integer id, String surname, String name, String patronymic, String phoneNumber, String eMail) {
+    public void updatePeople(Integer id, String surname, String name, String patronymic, int phoneNumber, String eMail) {
         People updatePeople = peopleRepository.getById(id);
         updatePeople.setSurname(surname);
         updatePeople.setName(name);

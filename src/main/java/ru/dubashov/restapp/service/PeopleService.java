@@ -2,6 +2,7 @@ package ru.dubashov.restapp.service;
 
 import ru.dubashov.restapp.entity.People;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface PeopleService {
@@ -9,7 +10,7 @@ public interface PeopleService {
 
     People create(People people);
 
-    void updatePeople(Integer id, String surname, String patronymic, String name, String phoneNumber, String eMail);
+    void updatePeople(Integer id, String surname, String patronymic, String name,  int phoneNumber, String eMail);
 
     void deletePeople(Integer id);
 
