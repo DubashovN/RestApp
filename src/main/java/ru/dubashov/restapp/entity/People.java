@@ -2,7 +2,6 @@ package ru.dubashov.restapp.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
 
 @Entity
 @Table(name = "test", schema = "public")
@@ -21,7 +20,7 @@ public class People implements Serializable {
 //    @Column(name = "birthdate")
 //    private LocalDate birthDate;
     @Column(name = "phone_number")
-    private int phoneNumber;
+    private String phoneNumber;
     @Column(name = "email")
     private String eMail;
 
@@ -29,7 +28,7 @@ public class People implements Serializable {
 
     }
 
-    public People(String surname, String name, String patronymic, int phoneNumber, String eMail) {
+    public People(String surname, String name, String patronymic, String phoneNumber, String eMail) {
         this.surname = surname;
         this.name = name;
         this.patronymic = patronymic;
@@ -37,7 +36,7 @@ public class People implements Serializable {
         this.eMail = eMail;
     }
 
-    public People(String surname, String name,  int phoneNumber, String eMail) {
+    public People(String surname, String name, String phoneNumber, String eMail) {
 
         this.surname = surname;
         this.name = name;
@@ -86,11 +85,11 @@ public class People implements Serializable {
 //        this.birthDate = birthDate;
 //    }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
