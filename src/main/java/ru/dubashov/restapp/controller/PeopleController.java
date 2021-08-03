@@ -9,8 +9,8 @@ import ru.dubashov.restapp.service.PeopleService;
 
 import java.util.List;
 
-@RequestMapping("/people")
 @RestController
+@RequestMapping("/people")
 public class PeopleController {
     private final PeopleService peopleService;
 
